@@ -1,20 +1,24 @@
 <template>
 	<div id="detalle">
-		<input type="hidden" id="id" v-bind:value="pelicula.Id"/>
-		<p><label for="titulo">Título: </label><input type="text" id="titulo" v-bind:value="pelicula.Titulo"/></p>
-		<p><label for="director">Director: </label><input type="text" id="director" v-bind:value="pelicula.Director"/></p>
-		<p><label for="duracion">Duración: </label><input type="number" id="duracion" min="0" v-bind:value="pelicula.Duracion"/></p>
-		<p><label for="anno">Año de lanzamiento: </label><input type="number" id="anno" min="0" v-bind:value="pelicula.Anno"/></p>
-		<p>
-			<input type ="button" name="aceptar" value="Aceptar"  v-on:click="aceptar"/>
-			<input v-if="pelicula.Id" type ="button" name="eliminar" value="Eliminar" v-on:click="eliminar"/>
-		</p>
+		<div id="form"> 
+			<input type="hidden" id="id" v-bind:value="pelicula.Id"/>
+			<p><label for="titulo">Título: </label><input type="text" id="titulo" v-bind:value="pelicula.Titulo"/></p>
+			<p><label for="director">Director: </label><input type="text" id="director" v-bind:value="pelicula.Director"/></p>
+			<p><label for="duracion">Duración: </label><input type="number" id="duracion" min="0" v-bind:value="pelicula.Duracion"/></p>
+			<p><label for="anno">Año de lanzamiento: </label><input type="number" id="anno" min="0" v-bind:value="pelicula.Anno"/></p>
+			<p>
+				<input type ="button" name="aceptar" value="Aceptar"  v-on:click="aceptar"/>
+				<input v-if="pelicula.Id" type ="button" name="eliminar" value="Eliminar" v-on:click="eliminar"/>
+				<input v-else type ="button" name="cancelar" value="Cancelar" v-on:click="cerrarDetalle"/>
+			</p>
+		</div>
 	</div>
 </template>
 
 <script>
 import {EventBus} from './EventBus.js'
 import axios from 'axios'
+import $ from 'jquery'
 export default {
 	name: 'detalle',
 	data(){
@@ -43,7 +47,10 @@ export default {
 			axios.delete('http://10.60.23.11:50659/api/Peliculas/'+id)
 			 .then(result => {
 			 	this.peliculas = result.data;
-			 	EventBus.$emit('cambiosUsuario',this.pelicula)
+			 	EventBus.$emit('cambiosPelicula',this.pelicula)
+			 	alert('Entrada eliminada con exito')
+			 	$("#form").remove()
+			  .catch(alert('Error al eliminar la entrada'))
 			})
 			
 		},
@@ -64,7 +71,7 @@ export default {
 				.then(
 					()=>{
 						alert('Pelicula creada con exito')
-						EventBus.$emit('cambiosUsuario',this.pelicula)
+						EventBus.$emit('cambiosPelicula',this.pelicula)
 				})
 			}else{
 				axios.put('http://10.60.23.11:50659/api/Peliculas/'+id,pelicula)
@@ -75,6 +82,9 @@ export default {
 				})
 			}
 			
+		},
+		cerrarDetalle:function(){
+
 		}
 	}
 
