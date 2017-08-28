@@ -27,7 +27,7 @@ export default {
 		if(this.$parent.pelicula != undefined){
 			this.pelicula = this.$parent.pelicula
 			
-		}/*else{
+		}else{
 			this.pelicula = {
 				Titulo: "",
 				Director: "",
@@ -35,7 +35,7 @@ export default {
 				Anno:null,
 				Id:null
 			}
-		}*/
+		}
 	},
 	methods: {
 		eliminar: function(){
@@ -43,8 +43,9 @@ export default {
 			axios.delete('http://10.60.23.11:50659/api/Peliculas/'+id)
 			 .then(result => {
 			 	this.peliculas = result.data;
+			 	EventBus.$emit('cambiosUsuario',this.pelicula)
 			})
-			EventBus.$emit('cambiosUsuario',this.pelicula)
+			
 		},
 		aceptar: function(){
 			let id= document.getElementById("id").value
@@ -60,12 +61,20 @@ export default {
 				pelicula.Id = 0
 
 				axios.post('http://10.60.23.11:50659/api/Peliculas',pelicula)
-				.then(alert('Pelicula creada con exito'))
+				.then(
+					()=>{
+						alert('Pelicula creada con exito')
+						EventBus.$emit('cambiosUsuario',this.pelicula)
+				})
 			}else{
 				axios.put('http://10.60.23.11:50659/api/Peliculas/'+id,pelicula)
-				.then(alert('Pelicula actualizada con exito'))
+				.then(
+					()=>{
+						alert('Pelicula actualizada con exito')
+						EventBus.$emit('cambiosUsuario',this.pelicula)
+				})
 			}
-			EventBus.$emit('cambiosUsuario',this.pelicula)
+			
 		}
 	}
 

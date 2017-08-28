@@ -28,9 +28,9 @@ export default{
 	created(){
 		this.getAll()
 		EventBus.$on('cambiosUsuario',
-			(
-				pelicula => {this.getAll();}
-				)
+			
+				this.getAll
+				
 			)
 		
 	},
@@ -44,7 +44,7 @@ export default{
 		},
 		showDetalle: function(event){
 			console.log(event.target.id)
-			let pelicula = devuelvePelicula(event.target.id)
+			let pelicula = this.devuelvePelicula(event.target.id)
 			new Vue({
 				el: '#detalle',
 				data:{
@@ -54,18 +54,15 @@ export default{
 			})
 		},
 		devuelvePelicula: function(id){
-			foreach(var pelicula in this.peliculas){
+			var resultado
+			this.peliculas.forEach(function(pelicula){
 				if(pelicula.Id == id){
-					return pelicula;
+					resultado = pelicula
 				}		
-			}
-			return {
-				Titulo: "",
-				Director: "",
-				Duracion: null,
-				Anno:null,
-				Id:null
-			} 
+			
+			})
+			return resultado
 		}
 	}
-	</script>
+}
+</script>
