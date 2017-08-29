@@ -1,9 +1,9 @@
 <template>
 <div id="maestro">
-	<ul v-if = "peliculas">
+	<ul v-if = "peliculas" class="list-group">
 	<p>Seleccione una película para editarla o cree una nueva película</p>
 	<p><input type="button" name="crear" value="Nueva Pelicula" v-on:click = "showDetalle"/></p>
-	<li v-for= "pelicula in peliculas" v-on:click= "showDetalle" id="pelicula.Id" v-bind:id = "pelicula.Id">{{pelicula.Titulo}}</li>
+	<a href="#" class="list-group-item row col-md-4" v-for= "pelicula in peliculas" v-on:click= "showDetalle" id="pelicula.Id" v-bind:id = "pelicula.Id">{{pelicula.Titulo}}</a>
 	</ul>
 	<div v-else>
 	<p>No hay películas disponibles cree una nueva película</p>

@@ -1,8 +1,9 @@
 <template>
-  <div id="app" class="row center-block col-md-6">
+  <div id="app" class="row center-block">
     <h3 id="Pelicula" class="col-md-6 btn-secondary btn btn-md" v-on:click="mostrarMaestro">Películas</h3>
     <h3 id="Entrada" class="col-md-6 btn-secondary btn btn-md" v-on:click="mostrarMaestro">Entradas</h3>
-    <div id="maestro"></div>
+    <div id="maestro" class="center-block"></div>
+    
   </div>
 </template>
 

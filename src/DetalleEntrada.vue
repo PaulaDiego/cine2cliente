@@ -2,14 +2,16 @@
 	<div id="detalle">
 		<h3 v-if="entrada.Id">Actualización de Entrada</h3>
 		<h3 v-else>Nueva Entrada</h3>
-		<input type="hidden" id="id" v-bind:value="entrada.Id"/>
-		<p><label for="butaca">Sala: </label><input type="text" id="sala" v-bind:value="entrada.Sala"/></p>
-		<p><label for="butaca">Butaca: </label><input type="text" id="butaca" v-bind:value="entrada.Butaca"/></p>
-		<p><label for="fila">Fila: </label><input type="number" id="fila" min="1" max="20" v-bind:value="entrada.Fila"/></p>
-		<p><label for="precio">Precio: </label><input type="number" id="precio" min="0" v-bind:value="entrada.Precio"/></p>
-		<p><label for="dia">Dia: </label><input type="calendar" id="dia" v-bind:value="entrada.Dia"/></p>
-		<p><label for="hora">Hora: </label><input type="text" id="hora" v-bind:value="entrada.Hora"/></p>
-		<p><label for="pelicula">Película: </label><input type="text" id="pelicula" v-bind:value="entrada.pelicula"/></p>
+		<form v-on:submit.prevent>
+		<input type="hidden" id="id" v-model:value="entrada.Id"/>
+		<p><label for="butaca">Sala: </label><input type="text" required id="sala" v-model:value="entrada.Sala"/></p>
+		<p><label for="butaca">Butaca: </label><input type="text" required id="butaca" v-model:value="entrada.Butaca"/></p>
+		<p><label for="fila">Fila: </label><input type="number" required id="fila" min="1" max="20" v-model:value="entrada.Fila"/></p>
+		<p><label for="precio">Precio: </label><input type="number" required id="precio" min="0" v-model:value="entrada.Precio"/></p>
+		<p><label for="dia">Dia: </label><input type="number" required id="dia" v-model:value="entrada.Dia"/></p>
+		<p><label for="hora">Hora: </label><input type="text" required id="hora" v-model:value="entrada.Hora"/></p>
+		<p><label for="pelicula">Película: </label><input type="text" required id="pelicula" v-model:value="entrada.Pelicula"/></p>
+		</form>
 		<p>
 			<input type ="button" name="aceptar" value="Aceptar"  v-on:click="aceptar"/>
 			<input v-if="entrada.Id" type ="button" name="eliminar" value="Eliminar" v-on:click="eliminar"/>
@@ -42,7 +44,7 @@ export default {
 				Precio: null,
 				Dia:"",
 				Hora:"",
-				Entrada:"",
+				Pelicula:"",
 				Id: null
 			}
 		}
@@ -73,6 +75,7 @@ export default {
 				Precio: document.getElementById("precio").value,
 				Dia:document.getElementById("dia").value,
 				Hora:document.getElementById("hora").value,
+				Pelicula:document.getElementById("pelicula").value,
 				Id:id
 			}
 			if(id==""){
@@ -82,13 +85,7 @@ export default {
 				.then(
 					(entrada)=>{
 					alert('Entrada creada con exito')
-					this.entrada.Sala = entrada.data.Sala
 					this.entrada.Id = entrada.data.Id
-					this.entrada.Butaca = entrada.data.Butaca
-					this.entrada.Fila = entrada.data.Fila
-					this.entrada.Precio = entrada.data.Precio
-					this.entrada.Dia = entrada.data.Dia
-					this.entrada.Hora = entrada.data.Hora
 					EventBus.$emit('cambiosEntrada',this.entrada)
 				})
 				.catch(function(){

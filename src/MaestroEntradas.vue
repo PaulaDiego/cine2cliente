@@ -1,10 +1,10 @@
 <template>
-<div id="maestro">
-	<ul v-if = "entradas">
+<div id="maestro" class="center-block">
+	<ul v-if = "entradas"  class="list-group">
 	<p>Seleccione una entrada para editarla o cree una nueva entrada</p>
 	<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
-	<li v-for= "entrada in entradas" v-on:click= "showDetalle" id="entrada.Id" v-bind:id = "entrada.Id">SALA: {{entrada.Sala}} FILA: {{entrada.Fila}} BUTACA: {{entrada.Butaca}}</li>
-	</ul>
+	<a href="#" class="list-group-item row col-md-4" v-for= "entrada in entradas" v-on:click= "showDetalle" id="entrada.Id" v-bind:id = "entrada.Id">SALA: {{entrada.Sala}} FILA: {{entrada.Fila}} BUTACA: {{entrada.Butaca}}</a>
+	</ul> 
 	<div v-else>
 	<p>No hay entradas disponibles cree una nueva entrada</p>
 	<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
