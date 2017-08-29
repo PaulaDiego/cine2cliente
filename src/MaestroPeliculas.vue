@@ -1,17 +1,15 @@
 <template>
 <div id="maestro">
-	<div id="maestroPeliculas">
 	<ul v-if = "peliculas">
-	<p>Seleccione una película para editarla o cree una nueva película<p>
+	<p>Seleccione una película para editarla o cree una nueva película</p>
 	<p><input type="button" name="crear" value="Nueva Pelicula" v-on:click = "showDetalle"/></p>
 	<li v-for= "pelicula in peliculas" v-on:click= "showDetalle" id="pelicula.Id" v-bind:id = "pelicula.Id">{{pelicula.Titulo}}</li>
 	</ul>
 	<div v-else>
-	<p>No hay películas disponibles cree una nueva película<p>
-	<p><input type="button" name="crear" value="Nueva Pelicula" v-on:click = "showDetalle"/></p>
+	<p>No hay películas disponibles cree una nueva película</p>
+	<p><input type="button" name="crear" value="Nueva Película" v-on:click = "showDetalle"/></p>
 	</div>
-	<div id="detalle" v-on:change = "getAll"></div>
-	</div>
+	<div id="detalle"></div>
 	</div>
 </template>
 

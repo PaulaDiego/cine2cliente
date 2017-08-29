@@ -1,17 +1,15 @@
 <template>
 <div id="maestro">
-	<div id="maestroEntradas">
-		<ul v-if = "entradas">
-		<p>Seleccione una entrada para editarla o cree una nueva entrada<p>
-		<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
-		<li v-for= "entrada in entradas" v-on:click= "showDetalle" id="entrada.Id" v-bind:id = "entrada.Id">{{entrada.Fila}}</li>
-		</ul>
-		<div v-else>
-		<p>No hay entradas disponibles cree una nueva entrada<p>
-		<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
-		</div>
-		<div id="detalle" v-on:change = "getAll"></div>
+	<ul v-if = "entradas">
+	<p>Seleccione una entrada para editarla o cree una nueva entrada</p>
+	<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
+	<li v-for= "entrada in entradas" v-on:click= "showDetalle" id="entrada.Id" v-bind:id = "entrada.Id">SALA: {{entrada.Sala}} FILA: {{entrada.Fila}} BUTACA: {{entrada.Butaca}}</li>
+	</ul>
+	<div v-else>
+	<p>No hay entradas disponibles cree una nueva entrada</p>
+	<p><input type="button" name="crear" value="Nueva Entrada" v-on:click = "showDetalle"/></p>
 	</div>
+	<div id="detalle"></div>
 </div>
 </template>
 

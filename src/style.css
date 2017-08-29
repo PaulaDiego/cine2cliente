@@ -1,12 +1,16 @@
+#app{
+	margin:0 auto;
+}
 #app #Pelicula, #app #Entrada {
-	padding: 30px;
-	border:1px black solid;
-
+	padding: 10px;
+	text-align: center;
 }
-.selected {
-	background-color: blue;
+#app #detalle{
+	margin: 0 auto;
 }
-
+.btn{
+	font-weight: bold!important;
+}
 li{
 	list-style: none;
 }
