@@ -18,7 +18,6 @@ import axios from 'axios'
 import Vue from 'vue'
 import DetallePelicula from './DetallePelicula.vue'
 import {EventBus} from './EventBus.js'
-import $ from 'jquery'
 export default{
 	name: 'maestro',
 	data () {

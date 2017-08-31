@@ -18,7 +18,6 @@ import axios from 'axios'
 import Vue from 'vue'
 import DetalleEntrada from './DetalleEntrada.vue'
 import {EventBus} from './EventBus.js'
-import $ from 'jquery'
 export default{
 	name: 'maestro',
 	data () {
@@ -30,7 +29,7 @@ export default{
 		this.getAll()
 		EventBus.$on('cambiosEntrada',
 			this.getAll
-			)
+		)
 		
 	},
 	methods: {
@@ -41,7 +40,6 @@ export default{
 			})
 		},
 		showDetalle: function(event){
-			console.log(event.target.id)
 			let entrada = this.devuelveEntrada(event.target.id)
 			new Vue({
 				el: '#detalle',
